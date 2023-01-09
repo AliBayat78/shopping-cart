@@ -1,4 +1,4 @@
-export interface IFormik {
+export interface Product {
   title: string
   price: number
   id: string

@@ -1,10 +1,5 @@
 import { useState } from 'react'
-
-interface Product {
-  title: string
-  price: number
-  id: string
-}
+import { Product } from '../models/models'
 
 const ProductsList: React.FC = () => {
   const initialProducts = [
