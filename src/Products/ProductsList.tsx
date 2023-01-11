@@ -1,10 +1,10 @@
-import { useState } from 'react'
-import { Product } from '../models/models'
 import { useSelector } from 'react-redux'
 import { addProduct, selectedProducts } from '../redux/ProductsSlice'
 
+
 const ProductsList: React.FC = () => {
   const products = useSelector(selectedProducts)
+
 
   return (
     <div>

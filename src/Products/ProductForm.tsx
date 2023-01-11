@@ -1,5 +1,7 @@
 import { Formik } from 'formik'
 import { Product } from '../models/models'
+import { addProduct } from '../redux/ProductsSlice'
+import { useAppDispatch } from '../redux/storeHooks'
 
 const ProductForm = () => {
   const initialValues: Product = {
@@ -8,10 +10,17 @@ const ProductForm = () => {
     id: '',
   }
 
+  const dispatch = useAppDispatch()
+
   return (
     <div>
       <h2>Add a Game</h2>
-      <Formik initialValues={initialValues} onSubmit={(values) => alert(JSON.stringify(values))}>
+      <Formik
+        initialValues={initialValues}
+        onSubmit={(values) => {
+          dispatch(addProduct(values))
+        }}
+      >
         {({ handleSubmit, values, handleChange }) => {
           return (
             <form onSubmit={handleSubmit}>
