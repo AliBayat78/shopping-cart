@@ -1,10 +1,15 @@
 import { useSelector } from 'react-redux'
-import { addProduct, selectedProducts } from '../redux/ProductsSlice'
-
+import { addProduct, removeProduct, selectedProducts } from '../redux/ProductsSlice'
+import { useAppDispatch } from '../redux/storeHooks'
 
 const ProductsList: React.FC = () => {
   const products = useSelector(selectedProducts)
 
+  const dispatch = useAppDispatch()
+
+  const removeProductHandler = (id: string) => {
+    dispatch(removeProduct(id))
+  }
 
   return (
     <div>
@@ -13,6 +18,7 @@ const ProductsList: React.FC = () => {
         return (
           <div key={product.id}>
             <span>{`${product.title} : ${product.price}`}</span>
+            <button onClick={() => removeProductHandler(product.id)}>Remove Product</button>
           </div>
         )
       })}

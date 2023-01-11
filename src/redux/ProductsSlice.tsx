@@ -16,10 +16,13 @@ const productsSlice = createSlice({
     addProduct: (state, action: PayloadAction<Product>) => {
       return [...state, action.payload]
     },
+    removeProduct: (state, action: PayloadAction<string>) => {
+      return state.filter((product) => product.id !== action.payload)
+    },
   },
 })
 
-export const { addProduct } = productsSlice.actions
+export const { addProduct, removeProduct } = productsSlice.actions
 
 export const selectedProducts = (state: RootState) => state.products
 
