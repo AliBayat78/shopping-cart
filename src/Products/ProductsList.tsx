@@ -1,4 +1,5 @@
 import { useSelector } from 'react-redux'
+import { addToCart } from '../Cart/cartSlice'
 import { addProduct, removeProduct, selectedProducts } from '../redux/ProductsSlice'
 import { useAppDispatch } from '../redux/storeHooks'
 
@@ -18,6 +19,7 @@ const ProductsList: React.FC = () => {
         return (
           <div key={product.id}>
             <span>{`${product.title} : ${product.price}`}</span>
+            <button onClick={() => dispatch(addToCart(product))}>Add to Cart</button>
             <button onClick={() => removeProductHandler(product.id)}>Remove Product</button>
           </div>
         )
