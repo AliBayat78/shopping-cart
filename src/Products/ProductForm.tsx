@@ -1,6 +1,7 @@
 import { Formik } from 'formik'
+import { useSelector } from 'react-redux'
 import { Product } from '../models/models'
-import { addProduct } from '../redux/ProductsSlice'
+import { addProduct, addProductAsync, getErrorMessage } from '../redux/ProductsSlice'
 import { useAppDispatch } from '../redux/storeHooks'
 
 const ProductForm = () => {
@@ -11,20 +12,23 @@ const ProductForm = () => {
   }
 
   const dispatch = useAppDispatch()
+  const errorMessage = useSelector(getErrorMessage)
 
   return (
     <div>
       <h2>Add a Game</h2>
+      {errorMessage ? <span>error: {errorMessage}</span> : null}
       <Formik
         initialValues={initialValues}
         onSubmit={(values) => {
-          dispatch(addProduct(values))
+          dispatch(addProductAsync(values))
         }}
       >
         {({ handleSubmit, values, handleChange }) => {
           return (
             <form onSubmit={handleSubmit}>
               <input
+                style={{ border: errorMessage ? '1px solid red' : '1px solid black' }}
                 value={values.title}
                 onChange={handleChange}
                 type="text"
@@ -32,6 +36,7 @@ const ProductForm = () => {
                 placeholder="title"
               />
               <input
+                style={{ border: errorMessage ? '1px solid red' : '1px solid black' }}
                 value={values.price}
                 onChange={handleChange}
                 type="number"
@@ -39,6 +44,7 @@ const ProductForm = () => {
                 placeholder="price"
               />
               <input
+                style={{ border: errorMessage ? '1px solid red' : '1px solid black' }}
                 value={values.id}
                 onChange={handleChange}
                 type="text"

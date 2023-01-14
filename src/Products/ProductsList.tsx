@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux'
 import { addToCart } from '../Cart/cartSlice'
-import { addProduct, removeProduct, selectedProducts } from '../redux/ProductsSlice'
+import { removeProduct, selectedProducts } from '../redux/ProductsSlice'
 import { useAppDispatch } from '../redux/storeHooks'
 
 const ProductsList: React.FC = () => {
@@ -14,7 +14,7 @@ const ProductsList: React.FC = () => {
 
   return (
     <div>
-      <h1>Games List</h1>
+      <h1 className="text-red-600">Games List</h1>
       {products.map((product) => {
         return (
           <div key={product.id}>
@@ -24,18 +24,6 @@ const ProductsList: React.FC = () => {
           </div>
         )
       })}
-      <button
-        className="bg-cyan-400"
-        onClick={() =>
-          addProduct({
-            title: 'Half Life',
-            price: 200,
-            id: 'hl',
-          })
-        }
-      >
-        Add Products
-      </button>
     </div>
   )
 }
