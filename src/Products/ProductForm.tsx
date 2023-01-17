@@ -1,7 +1,7 @@
 import { Formik } from 'formik'
 import { useSelector } from 'react-redux'
 import { Product } from '../models/models'
-import { addProduct, addProductAsync, getErrorMessage } from '../redux/ProductsSlice'
+import { addProductAsync, getErrorMessage } from '../redux/ProductsSlice'
 import { useAppDispatch } from '../redux/storeHooks'
 
 const ProductForm = () => {

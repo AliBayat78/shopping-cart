@@ -39,13 +39,13 @@ const productsSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(addProductAsync.fulfilled, (state, action) => ({
       ...state,
-      validationState: ValidationState.Rejected,
+      validationState: ValidationState.Fulfilled,
       errorMessage: undefined,
       products: [...state.products, action.payload],
     }))
     builder.addCase(addProductAsync.rejected, (state, action) => ({
       ...state,
-      validationState: ValidationState.Fulfilled,
+      validationState: ValidationState.Rejected,
       errorMessage: action.error.message,
     }))
     builder.addCase(addProductAsync.pending, (state, action) => ({
